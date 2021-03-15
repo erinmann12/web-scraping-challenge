@@ -34,7 +34,7 @@ def scrape_info():
     soup = BeautifulSoup(html, 'html.parser')
 
     #delay the code by one second
-    time.sleep(1)
+    time.sleep(2)
 
     #scrape the code to find the image
     featured_images = soup.find('img', class_='fancybox-image')
@@ -74,7 +74,7 @@ def scrape_info():
 
         title = soup.find('h2', class_ = 'title').text
         image = soup.find('div', class_ = 'downloads')
-        original_img = image('li')[1]
+        original_img = image('li')[0]
         url = original_img('a')
         image_url = url[0]['href']
         hemisphere_dict["title"] = title
@@ -95,5 +95,6 @@ def scrape_info():
         "hemisphere_data": hemisphere_image_urls
     }
 
+    browser.quit()
     # Return results
     return mars_data
