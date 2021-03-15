@@ -30,10 +30,24 @@
         </div>
     </div> 
 
-    <!-- <h3>Mars Hemispheres</h3>  -->
-    <!-- <hr>
-    
-   
+    <div class ="container-fluid">
+      <div class = "row">
+        <h2>Mars Hemispheres</h2>
+        <hr>
+
+        {% for dict in mars.hemisphere_data %}
+          <div class = "col-md-6">
+            <div class="card">
+              <img class="card-img-top" id = "scale_id" src= "{{dict.image_url}}">
+              <div class="card-body">
+                <h4 class="card-title">{{dict.title}}</h4>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
 
   </div>
 </body>

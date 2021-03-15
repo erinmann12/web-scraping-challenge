@@ -57,41 +57,42 @@ def scrape_info():
     browser.quit()
 
     # #scrape hemisphere images/title
-    # url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    # browser.visit(url)
-    # #create an empty list to hold values
-    # hemisphere_image_urls = []
+    browser = init_browser()
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    #create an empty list to hold values
+    hemisphere_image_urls = []
 
-    # for i in range (4):
-    #     hemisphere_dict = {}
-    #     browser.links.find_by_partial_text('Hemisphere Enhanced')[i].click()
+    for i in range (4):
+        hemisphere_dict = {}
+        browser.links.find_by_partial_text('Hemisphere Enhanced')[i].click()
 
-    #     html = browser.html
-    #     soup = BeautifulSoup(html, 'html.parser')
+        html = browser.html
+        soup = BeautifulSoup(html, 'html.parser')
 
-    #     time.sleep(1)
+        time.sleep(1)
 
-    #     title = soup.find('h2', class_ = 'title').text
-    #     image = soup.find('div', class_ = 'downloads')
-    #     original_img = image('li')[1]
-    #     url = original_img('a')
-    #     img_url = url[0]['href']
-    #     hemisphere_dict["title"] = title
-    #     hemisphere_dict["image_url"] = img_url
-    #     hemisphere_image_urls.append(hemisphere_dict)
+        title = soup.find('h2', class_ = 'title').text
+        image = soup.find('div', class_ = 'downloads')
+        original_img = image('li')[1]
+        url = original_img('a')
+        image_url = url[0]['href']
+        hemisphere_dict["title"] = title
+        hemisphere_dict["image_url"] = image_url
+        hemisphere_image_urls.append(hemisphere_dict)
 
-    #     browser.back()
+        browser.back()
 
     # # Close the browser after scraping
-    # browser.quit()
+    browser.quit()
 
     #store data in dictionary
     mars_data = {
         "news_title": news_title,
         "news_p": news_p,
         "featured_image_url": featured_image_url,
-        "mars_table": html_mars_table
-        # "hemisphere_data": hemipshere_image_urls
+        "mars_table": html_mars_table,
+        "hemisphere_data": hemisphere_image_urls
     }
 
     # Return results
