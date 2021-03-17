@@ -33,7 +33,7 @@ def scrape_info():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-    #delay the code by one second
+    #delay the code by two seconds
     time.sleep(2)
 
     #scrape the code to find the image
@@ -63,6 +63,7 @@ def scrape_info():
     #create an empty list to hold values
     hemisphere_image_urls = []
 
+    #loop through hemisphere pages
     for i in range (4):
         hemisphere_dict = {}
         browser.links.find_by_partial_text('Hemisphere Enhanced')[i].click()
